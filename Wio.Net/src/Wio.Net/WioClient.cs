@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-
+﻿
 namespace Wio.Net
 {
+    using System;
+    using System.Threading.Tasks;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -72,6 +72,31 @@ namespace Wio.Net
         }
 
         /// <summary>
+        /// Renames the node asynchronously
+        /// </summary>
+        /// <param name="authenticationKey">The authentication key.</param>
+        /// <param name="serialNumber">The serial number.</param>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public async Task RenameNodeAsync(string authenticationKey, string serialNumber, string name)
+        {
+            var request = new RenameNodeRequest(authenticationKey, serialNumber, name);
+            await this.ProcessRequest(request);
+        }
+
+        /// <summary>
+        /// Deletes the node asynchronously
+        /// </summary>
+        /// <param name="authenticationKey">The authentication key.</param>
+        /// <param name="serialNumber">The serial number.</param>
+        /// <returns></returns>
+        public async Task DeleteNodeAsync(string authenticationKey, string serialNumber)
+        {
+            var request = new DeleteNodeRequest(authenticationKey, serialNumber);
+            await this.ProcessRequest(request);
+        }
+
+        /// <summary>
         /// Logins the asynchronously.
         /// </summary>
         /// <param name="email">The email.</param>
@@ -120,17 +145,29 @@ namespace Wio.Net
             return await HandleResponse<T>(reponse);
         }
 
+        private async Task ProcessRequest(HttpRequestMessage request)
+        {
+            var reponse = await this.Client.SendAsync(request);
+            HandleResponse(reponse);
+        }
+       
         /// <summary>
         /// Handles the http response.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="reponse">The reponse.</param>
+        /// <param name="response">The reponse.</param>
         /// <returns></returns>
-        private static async Task<T> HandleResponse<T>(HttpResponseMessage reponse)
+        private static async Task<T> HandleResponse<T>(HttpResponseMessage response)
         {
-            reponse.EnsureSuccessStatusCode();
-            var content = await reponse.Content.ReadAsStringAsync();
+            HandleResponse(response);
+            var content = await response.Content.ReadAsStringAsync();
             return await Task.Run(() => JsonConvert.DeserializeObject<T>(content));
         }
+
+        /// <summary>
+        /// Handles the http response.
+        /// </summary>
+        /// <param name="response">The response.</param>
+        private static void HandleResponse(HttpResponseMessage response) => response.EnsureSuccessStatusCode();
     }
 }

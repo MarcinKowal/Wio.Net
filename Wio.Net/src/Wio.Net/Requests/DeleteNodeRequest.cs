@@ -4,24 +4,26 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
 
-    internal class RenameNodeRequest : HttpRequestMessage
+    internal class DeleteNodeRequest : HttpRequestMessage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenameNodeRequest"/> class.
+        /// Initializes a new instance of the <see cref="DeleteNodeRequest"/> class.
         /// </summary>
-        /// <param name="authenticationKey">The authentication key.</param>
-        /// <param name="nodeSerialNumber">The node serial number.</param>
-        /// <param name="nodeName">Name of the node.</param>
-        internal RenameNodeRequest(string authenticationKey, string nodeSerialNumber, string nodeName)
-            : base(HttpMethod.Post, @"nodes/rename")
+        /// <param name="authenticationKey">
+        /// The authentication key.
+        /// </param>
+        /// <param name="nodeSerialNumber">
+        /// The node serial number.
+        /// </param>
+        internal DeleteNodeRequest(string authenticationKey, string nodeSerialNumber) 
+            : base(HttpMethod.Post, @"nodes/delete")
         {
             var requestParams = new List<KeyValuePair<string, string>>
                                     {
                                         new KeyValuePair<string, string>("node_sn", nodeSerialNumber),
-                                        new KeyValuePair<string, string>("name", nodeName),
                                     };
             this.Content = new FormUrlEncodedContent(requestParams);
             this.Headers.Authorization = new AuthenticationHeaderValue("token", authenticationKey);
-        }
+        }  
     }
 }

@@ -21,5 +21,22 @@
         /// <param name="authenticationKey">The authentication key.</param>
         /// <returns></returns>
         Task<IEnumerable<Node>> GetNodesAsync(string authenticationKey);
+
+        /// <summary>
+        /// Renames the node asynchronously
+        /// </summary>
+        /// <param name="authenticationKey">The authentication key.</param>
+        /// <param name="serialNumber">The serial number.</param>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        Task RenameNodeAsync(string authenticationKey, string serialNumber, string name);
+
+        /// <summary>
+        /// Deletes the node asynchronously
+        /// </summary>
+        /// <param name="authenticationKey">The authentication key.</param>
+        /// <param name="serialNumber">The serial number.</param>
+        /// <returns></returns>
+        Task DeleteNodeAsync(string authenticationKey, string serialNumber);
     }
 }
