@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Model;
+
     public interface INodeManagement : IDisposable
     {
         /// <summary>
@@ -38,5 +40,12 @@
         /// <param name="serialNumber">The serial number.</param>
         /// <returns></returns>
         Task DeleteNodeAsync(string authenticationKey, string serialNumber);
+
+        /// <summary>
+        /// Gets the well known API of given node in asynchronous way
+        /// </summary>
+        /// <param name="nodeKey">The node key.</param>
+        /// <returns></returns>
+        Task<WellKnown> GetWellKnownAsync(string nodeKey);
     }
 }

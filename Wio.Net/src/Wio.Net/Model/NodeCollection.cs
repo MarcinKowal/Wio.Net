@@ -1,6 +1,7 @@
-﻿namespace Wio.Net.Collections
+﻿namespace Wio.Net.Model
 {
     using System.Collections.Generic;
+
     using Newtonsoft.Json;
 
     [JsonObject(MemberSerialization.OptIn)]

@@ -9,7 +9,7 @@ namespace Wio.Net
 
     using Newtonsoft.Json;
 
-    using Wio.Net.Collections;
+    using Wio.Net.Model;
     using Wio.Net.Requests;
 
     public class WioClient : IUserManagement, INodeManagement
@@ -181,5 +181,16 @@ namespace Wio.Net
         /// </summary>
         /// <param name="response">The response.</param>
         private static void HandleResponse(HttpResponseMessage response) => response.EnsureSuccessStatusCode();
+
+        /// <summary>
+        /// Gets the well known API of given node in asynchronous way
+        /// </summary>
+        /// <param name="nodeKey">The node token</param>
+        /// <returns></returns>
+        public async Task<WellKnown> GetWellKnownAsync(string nodeKey)
+        {
+            var request = new GetWellKnownRequest(nodeKey);
+            return await this.ProcessRequest<WellKnown>(request);
+        }
     }
 }

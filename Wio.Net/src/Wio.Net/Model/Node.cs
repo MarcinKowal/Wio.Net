@@ -1,4 +1,4 @@
-﻿namespace Wio.Net
+﻿namespace Wio.Net.Model
 {
     using Newtonsoft.Json;
 
