@@ -120,6 +120,18 @@ namespace Wio.Net
             return await this.ProcessRequest<UserToken>(request);
         }
 
+        public async Task RetrievePasswordAsync(string email)
+        {
+            var request = new RetrievePasswordRequest(email);
+            await this.ProcessRequest(request);
+        }
+
+        public async Task<string> ChangePasswordAsync(string authenticationKey, string newPassword)
+        {
+            var request = new ChangePasswordRequest(authenticationKey, newPassword);
+            return await this.ProcessRequest<string>(request);
+        }
+
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>

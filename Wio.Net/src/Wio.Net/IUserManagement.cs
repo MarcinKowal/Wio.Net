@@ -20,5 +20,14 @@
         /// <param name="password">The password.</param>
         /// <returns></returns>
         Task<UserToken> CreateUserAsync(string email, string password);
+
+        /// <summary>
+        /// Retrieves the password asynchronously
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        Task RetrievePasswordAsync(string email);
+
+        Task<string> ChangePasswordAsync(string authenticationKey, string newPassword);
     }
 }
