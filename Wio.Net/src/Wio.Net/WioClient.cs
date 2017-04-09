@@ -1,14 +1,12 @@
 ﻿
 namespace Wio.Net
 {
+    using Newtonsoft.Json;
     using System;
-    using System.Threading.Tasks;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
-
-    using Newtonsoft.Json;
-
+    using System.Threading.Tasks;
     using Wio.Net.Model;
     using Wio.Net.Requests;
 
