@@ -1,0 +1,7 @@
+<h1 id="wionet">Wio.Net</h1>
+
+
+
+<h2 id="what-is-wionet-api">What is Wio.Net API? </h2>
+
+<p>Wio.Net API is a free, open source C# API to communicate with Wio - IoT ESP8266 based development platform. It wrapps all http requests available through the official <a href="https://seeed-studio.github.io/Wio_Link/">API Reference</a>. </p>
